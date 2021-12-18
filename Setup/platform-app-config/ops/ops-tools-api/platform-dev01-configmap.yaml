@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-ops-tools-api-dev01
+data:
+  application.properties: |-
+    platform.environment=dev01
+    redis.port=6379

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ops-tools-api
+    in-service: "true"
+  name: ops-tools-api
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: ops-tools-api
+  template:
+    metadata:
+      labels:
+        app: ops-tools-api
+        in-service: "true"
+    spec:
+      containers:
+        - name: ops-tools-api
+          image: localhost:5000/digital-ops/ops-tools-api:latest
+          envFrom:
+            - configMapRef:
+                name: ops-tools-api
+            - configMapRef:
+                name: platform-ops-tools-api-default
+#          livenessProbe:
+#            failureThreshold: 14
+#            httpGet:
+#              path: /actuator/health
+#              port: 3081
+#              scheme: HTTP
+#            initialDelaySeconds: 300
+#            periodSeconds: 5
+#            successThreshold: 1
+#            timeoutSeconds: 5
+#          ports:
+#            - containerPort: 80
+#              name: http
+#              protocol: TCP
+#          readinessProbe:
+#            failureThreshold: 12
+#            httpGet:
+#              path: /actuator/health
+#              port: 3081
+#              scheme: HTTP
+#            initialDelaySeconds: 300
+#            periodSeconds: 5
+#            successThreshold: 1
+#            timeoutSeconds: 5
+#          resources:
+#            limits:
+#              cpu: "2"
+#              memory: 5Gi
+#            requests:
+#              cpu: "2"
+#              memory: 4Gi
+#      dnsPolicy: ClusterFirst
+#      restartPolicy: Always
+#      schedulerName: default-scheduler
+#      securityContext: {}
+#      terminationGracePeriodSeconds: 30

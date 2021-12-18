@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ops-tools-api
+data:
+  application.properties: |-
+    bean.message=Testing reload dev! Updated Message from backend is: %s <br/> Services : %s

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ops-tools-api
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: ops-tools-api
+          - namespace: default
+            name: platform-ops-tools-api
+      secret:
+        enabled: true
+        sources:
+          - namespace: default
+            name: ops-tools-api
+      reload:
+        enabled: true
+        mode: event
+        strategy: refresh
+        period: 15000
+
+server:
+  servlet:
+    context-path: /apis/ops/ops-tools-api
+
+management:
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ops-tools-api-default
+data:
+  application.properties: |-
+    dev.defaultvalue=dev01
