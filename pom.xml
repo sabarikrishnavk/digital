@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion> 
+    <groupId>com.digital</groupId>
+    <artifactId>digital-build-all </artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>digital-build-all</name>
+    <description>digital-build-all</description> 
+    <modules>
+        <module>digital-team/digital-starter-parent</module>
+        <module>digital-team/digital-spring-framework</module>
+
+
+        <module>ops-team/ops-tools-api</module>
+        <module>ops-team/ops-cucumber</module>
+        <module>ops-team/ops-gatlin</module>
+
+        <module>digital-automation/ecom-cucumber-ui</module>
+    </modules>
+
+</project>
