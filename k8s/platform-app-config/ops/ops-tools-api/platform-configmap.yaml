@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: platform-ops-tools-api-default
+  name: platform-ops-tools-api
 data:
   application.properties: |-
     platform.environment=dev012

@@ -84,3 +84,36 @@ Push the image to minikube registry
 
     
 kubectl apply -f Setup/plaform-cd/ops/ops-tools-api/deployment-local.yaml
+
+
+
+##Cucumber
+
+mvn archetype:generate                      \
+"-DarchetypeGroupId=io.cucumber"           \
+"-DarchetypeArtifactId=cucumber-archetype" \
+"-DarchetypeVersion=7.0.0"               \
+"-DgroupId=com.digital.automation.ops"                  \
+"-DartifactId=ops-cucumber"               \
+"-Dpackage=com.digital.automation.ops"                  \
+"-Dversion=0.0.1"                 \
+"-DinteractiveMode=false"
+
+Refer : https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver
+To give Mac access to chromedriver 
+ run >> xattr -d com.apple.quarantine /usr/local/bin/chromedriver
+
+brew install --cask chromedriver
+
+
+mvn clean verify -Dspring.profiles.active=desktop -f ui-automation/ops-cucumber-ui/pom.xml
+mvn clean verify -f ops-automation/ops-cucumber/pom.xml
+
+mvn test -f ui-automation/ops-cucumber-ui/pom.xml
+mvn test -f ops-automation/ops-cucumber/pom.xml
+
+
+Micro Front end
+----
+
+https://itnext.io/create-a-front-app-immediately-with-next-js-on-google-cloud-run-d0cfde795ce3
