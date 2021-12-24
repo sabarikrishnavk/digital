@@ -1,53 +1,28 @@
 
-#Setup kubernetes objects for services.
-minikube start
-
-kubectl apply -f Setup/platform-app-config/ops/ops-tools-api/platform-secret.yaml
-kubectl apply -f Setup/platform-app-config/ops/ops-tools-api/platform-configmap.yaml
-kubectl apply -f Setup/platform-app-config/ops/ops-tools-api/platform-dev01-configmap.yaml
-
-kubectl apply -f Setup/ops-app-config/ops-tools-api/application-configmap.yaml
-kubectl apply -f Setup/ops-app-config/ops-tools-api/application-dev01-configmap.yaml
-kubectl apply -f Setup/ops-app-config/ops-tools-api/application-default-configmap.yaml
-
 
 ###Local development
 
-### install and run sonarqube
-docker pull sonarqube:latest
-docker run -d -p 9000:9000  -v sonarqube_extensions:/opt/sonarqube/extensions --name sonarqube sonarqube:latest
-curl http://localhost:9000 (admin/admin to start)
-
-### install and run nexus
-docker pull sonatype/nexus3
-docker run -d -p 8081:8081 --name nexus sonatype/nexus3
-curl http://localhost:8081/
-
-##First time admin password is saved under /nexus-data/admin.password file in docker containerId
-docker ps
-docker exec -it <containerId> /bin/sh
-
 ### install maven repos locally
-mvn clean install -f digital-spring-dependencies/pom.xml
-mvn clean install -f digital-spring-framework/pom.xml
-mvn clean install -f ops-tools-api/pom.xml
+mvn clean install -f digital-team/digital-starter-parent/pom.xml
+mvn clean install -f digital-team/digital-spring-framework/pom.xml
+mvn clean install -f ops-team/ops-tools-api/pom.xml
 
-mvn clean -f digital-spring-dependencies/pom.xml
-mvn clean -f digital-spring-framework/pom.xml
-mvn clean -f ops-tools-api/pom.xml
+mvn clean -f digital-team/digital-starter-parent/pom.xml
+mvn clean -f digital-team/digital-spring-framework/pom.xml
+mvn clean -f ops-team/ops-tools-api/pom.xml
 
 ### install maven deploy to nexus
-mvn clean install deploy -f digital-spring-dependencies/pom.xml
-mvn clean install deploy -f digital-spring-framework/pom.xml
-mvn clean install deploy -f ops-tools-api/pom.xml
+mvn clean install deploy -f digital-team/digital-starter-parent/pom.xml
+mvn clean install deploy -f digital-team/digital-spring-framework/pom.xml
+mvn clean install deploy -f ops-team/ops-tools-api/pom.xml
 
 
 ### dependency tree maven repos locally
-mvn  dependency:tree -f ops-tools-api/pom.xml
+mvn  dependency:tree -f ops-team/ops-tools-api/pom.xml
 
 
 ### push to sonar for quality gate
-mvn  sonar:sonar -f ops-tools-api/pom.xml -Dsonar.host.url=http://localhost:8081<Sonar server> \
+mvn  sonar:sonar -f ops-team/ops-tools-api/pom.xml -Dsonar.host.url=http://localhost:8081<Sonar server> \
 -Dsonar.login=<key for project> \
 -Dproject.build.sourceEncoding=UTF-8 -Dproject.reporting.outputEncoding=UTF-8 \
 -Dspring.profiles.active=sonarbuild \
@@ -55,7 +30,7 @@ mvn  sonar:sonar -f ops-tools-api/pom.xml -Dsonar.host.url=http://localhost:8081
 
 
 ### build docker image
-mvn spring-boot:build-image -f ops-tools-api/pom.xml \
+mvn spring-boot:build-image -f ops-team/ops-tools-api/pom.xml \
 -Dspring-boot.build-image.imageName=gcr.io/${PROJECT_ID}/ops-tools-api \
 -Dspring-boot.build-image.builder=gcr.io/buildpacks/builder
 
@@ -82,8 +57,6 @@ Push the image to minikube registry
     docker push localhost:5000/digital-ops/ops-tools-api:latest
 
 
-    
-kubectl apply -f Setup/plaform-cd/ops/ops-tools-api/deployment-local.yaml
 
 
 
@@ -106,11 +79,11 @@ To give Mac access to chromedriver
 brew install --cask chromedriver
 
 
-mvn clean verify -Dspring.profiles.active=desktop -f ui-automation/ops-cucumber-ui/pom.xml
-mvn clean verify -f ops-automation/ops-cucumber/pom.xml
+mvn clean verify -Dspring.profiles.active=desktop -f digital-automation/ecom-cucumber-ui/pom.xml
+mvn clean verify -f ops-team/ops-cucumber/pom.xml
 
-mvn test -f ui-automation/ops-cucumber-ui/pom.xml
-mvn test -f ops-automation/ops-cucumber/pom.xml
+mvn test -f digital-automation/ecom-cucumber-ui/pom.xml
+mvn test -f ops-team/ops-cucumber/pom.xml
 
 
 Micro Front end

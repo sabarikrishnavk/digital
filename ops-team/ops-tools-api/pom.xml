@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.digital.core</groupId>
-    <artifactId>digital-spring-dependencies</artifactId>
+    <artifactId>digital-starter-parent</artifactId>
     <version>0.0.1</version>
       <relativePath/>
   </parent>

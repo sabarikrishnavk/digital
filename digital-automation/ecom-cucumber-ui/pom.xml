@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.digital.core</groupId>
-        <artifactId>digital-spring-dependencies</artifactId>
+        <artifactId>digital-starter-parent</artifactId>
         <version>0.0.1</version>
-        <relativePath>../../digital-spring-dependencies/pom.xml </relativePath>
+        <relativePath>../../digital-starter-parent/pom.xml </relativePath>
     </parent>
     <groupId>com.digital.automation.ops</groupId>
-    <artifactId>ops-cucumber</artifactId>
+    <artifactId>ecom-cucumber-ui</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
@@ -53,10 +53,10 @@
             <artifactId>cucumber-spring</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId> 
+            <scope>test</scope>
         </dependency>
         <!-- assertions -->
         <dependency>
@@ -141,4 +141,3 @@
         </plugins>
     </build>
 </project>
-
