@@ -11,7 +11,7 @@
         <relativePath>../../digital-starter-parent/pom.xml </relativePath>
     </parent>
     <groupId>com.digital.automation.ops</groupId>
-    <artifactId>ecom-cucumber-ui</artifactId>
+    <artifactId>ecom-cucumber</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 

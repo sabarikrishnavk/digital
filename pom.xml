@@ -18,7 +18,8 @@
         <module>ops-team/ops-cucumber</module>
         <module>ops-team/ops-gatlin</module>
 
-        <module>digital-automation/ecom-cucumber-ui</module>
+        <module>digital-automation/ecom-cucumber</module> 
+        <module>digital-automation/ecom-gatlin</module>
     </modules>
 
 </project>
