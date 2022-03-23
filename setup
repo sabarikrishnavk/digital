@@ -1,3 +1,6 @@
+key : fauc3eRE0ayC5f2OXukaSeRBMDzD5m
+
+
 create schema catalog;
 create schema orders;
 create schema customer;
