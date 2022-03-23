@@ -1,5 +1,5 @@
 create schema catalog;
-create schema order;
+create schema orders;
 create schema customer;
 
 CREATE TABLE catalog.product (
@@ -13,7 +13,7 @@ CREATE TABLE catalog.product (
   PRIMARY KEY (uuid)
 );
 
-CREATE TABLE order.trolley (
+CREATE TABLE orders.trolley (
   uuid        UUID    NOT NULL DEFAULT gen_random_uuid(),
   cartid      TEXT    NOT NULL, 
   userid      TEXT    NOT NULL,
