@@ -1,0 +1,28 @@
+create schema catalog;
+create schema order;
+create schema customer;
+
+CREATE TABLE catalog.product (
+  uuid        UUID    NOT NULL DEFAULT gen_random_uuid(),
+  skuid       TEXT    NOT NULL, 
+  name        TEXT    NOT NULL, 
+  category    TEXT    NOT NULL,
+  description TEXT    NOT NULL,
+  price       NUMERIC NOT NULL,
+  spec        JSONB   NOT NULL,
+  PRIMARY KEY (uuid)
+);
+
+CREATE TABLE order.trolley (
+  uuid        UUID    NOT NULL DEFAULT gen_random_uuid(),
+  cartid      TEXT    NOT NULL, 
+  userid      TEXT    NOT NULL,
+  qty             NUMERIC    NOT NULL,
+  productprice    NUMERIC NOT NULL,
+  discount        NUMERIC NOT NULL,
+  tax             NUMERIC NOT NULL,
+  cartprice       NUMERIC NOT NULL,
+  spec        JSONB   NOT NULL,
+  PRIMARY KEY (uuid)
+);
+
